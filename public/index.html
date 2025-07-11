@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>鯖チャット v1.5</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="savachat-images/saba.webp">
+  </head>
+  <body>
+    <h1 id="title">
+      鯖チャット-saba chat-
+      <span id="room">
+      </span>
+    </h1>
+    <div class="toolbar">
+      <button onclick="chgusm();" class="tools">Change your username</button>
+      <button onclick="chgroom();" class="tools">New room</button>
+      <button onclick="sendImg()" class="tools" id="sendImg">Send Image</button>
+      <input type="file" style="display:none;" id="fileInput"/>
+    </div>
+    <div class="lists">
+      <ul id="messages"></ul>
+      <ul id="roomList">
+        <li>GETTING ALL ROOMS...</li>
+      </ul>
+    </div>
+    <form id="form">
+      <input id="input" autocomplete="off"  placeholder="Write your comment here..."/>
+    </form>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
