@@ -70,6 +70,16 @@ socket.on("roomList", function(roomArray) {
   });
 });
 
+socket.on("chatLog",(log)=>{
+  forEach(deta)=>{
+    const item = document.createElement('li');
+    item.textContent = `${deta.username}:${deta.message}`;
+    messages.appendChild(item);
+  }
+  messages.scrollTop = messages.scrollHeight;
+});
+
+
 function chgusm(){
   username = prompt('New user name:');
   localStorage.removeItem("username");
@@ -105,4 +115,5 @@ function sendImg(){
     reader.readAsDataURL(file);
     
   });
+
 }
