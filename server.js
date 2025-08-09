@@ -21,7 +21,7 @@ io.on("connection",(socket)=>{
     console.log(`${username} joined in ${room}` );
 
     if(chatLog.has(room)){
-      socket.emit("chatLog, chatLog.get(room));
+      socket.emit("chatLog", chatLog.get(room));
     }
   });
   socket.on("Chat message",(msg)=>{//Chat message イベント発生時
@@ -29,7 +29,10 @@ io.on("connection",(socket)=>{
       chatLog.set(msg.room,[]);
     }
     const log = chatLog.get(msg.room);
-    log.push(msg.message);
+    log.push({
+      "username":msg.username,
+      "message":msg.message
+             });
     if(log.length > 100){
       log.shift();
     }
@@ -56,4 +59,5 @@ io.on("connection",(socket)=>{
 http.listen(PORT,()=>{//サーバーの起動
   console.log("Server is running on port:"+PORT);
 });
+
 
