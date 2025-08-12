@@ -71,11 +71,11 @@ socket.on("roomList", function(roomArray) {
 });
 
 socket.on("chatLog",(log)=>{
-  forEach(deta)=>{
+  log.forEach((deta)=>{
     const item = document.createElement('li');
     item.textContent = `${deta.username}:${deta.message}`;
     messages.appendChild(item);
-  }
+  });
   messages.scrollTop = messages.scrollHeight;
 });
 
@@ -92,7 +92,7 @@ function chgroom(){
   localStorage.setItem("room",room);
   location.reload();
 }
-function sendImg(){
+function sendImgInit(){
   const sendImg = document.getElementById("sendImg");
   const fileInput = document.getElementById("fileInput");
   sendImg.addEventListener('click',()=>{
@@ -117,3 +117,19 @@ function sendImg(){
   });
 
 }
+sendImgInit();
+
+function appendImage(user, base64) {
+  const item = document.createElement("li");
+  const imgHTML = document.createElement("img");
+  imgHTML.src = base64;
+  imgHTML.style.maxWidth = "500px";
+  imgHTML.style.maxHeight = "500px";
+  item.textContent = `${user}: `;
+  item.appendChild(imgHTML);
+  messages.appendChild(item);
+}
+
+socket.on('Chat message',(deta)=>{
+  appendImage(deta.username,deta.image);
+});
