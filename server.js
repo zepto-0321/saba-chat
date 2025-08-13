@@ -39,6 +39,7 @@ io.on("connection",(socket)=>{
     
     io.to(msg.room).emit("Chat message",msg);//msg.roomだけにmsgを送信
   });
+
   
   socket.on("disconnecting",()=>{//切断時(正確には切断する直前)
     for (var room of socket.rooms) {
@@ -59,5 +60,6 @@ io.on("connection",(socket)=>{
 http.listen(PORT,()=>{//サーバーの起動
   console.log("Server is running on port:"+PORT);
 });
+
 
 
