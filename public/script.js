@@ -130,6 +130,7 @@ function appendImage(user, base64) {
   messages.appendChild(item);
 }
 
-socket.on('Chat message',(deta)=>{
+socket.on('Chat image',(deta)=>{
   appendImage(deta.username,deta.image);
 });
+
