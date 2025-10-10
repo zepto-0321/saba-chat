@@ -41,6 +41,12 @@ io.on("connection",(socket)=>{
   });
   socket.on("Chat image",(msg)=>{
     io.to(msg.room).emit("Chat image",msg);
+    
+    const log = chatLog.get(msg.room);
+    log.push({
+      "username":msg.username,
+      "image":msg.image
+    });
   });
   
   
@@ -63,6 +69,7 @@ io.on("connection",(socket)=>{
 http.listen(PORT,()=>{//サーバーの起動
   console.log("Server is running on port:"+PORT);
 });
+
 
 
 
