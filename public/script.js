@@ -107,10 +107,8 @@ function sendImgInit(){
     reader.onload=function(e){
       const base64 = e.target.result;
       const imgHTML = document.createElement("img");//imgを作成
-      imgHTML.src=base64;//src要素を変更
-      imgHTML.maxWidth="500px";
-      imgHTML.maxHeight="500px";
-      messages.appendChild(imgHTML);
+      appendImage(username, base64);
+      socket.emit("Chat image",{username: username, image:base64, room: room});
     };
     reader.readAsDataURL(file);
     
@@ -133,4 +131,5 @@ function appendImage(user, base64) {
 socket.on('Chat image',(deta)=>{
   appendImage(deta.username,deta.image);
 });
+
 
